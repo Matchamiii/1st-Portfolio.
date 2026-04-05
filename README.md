@@ -24,7 +24,11 @@ This is my personal portfolio website built using React and Vite, showcasing my 
 <img width="1843" height="748" alt="image" src="https://github.com/user-attachments/assets/4f5ef27c-06dc-47c4-8546-0c6bd17e32ef" />
 
 
-References
+## References
+<img width="1128" height="758" alt="image" src="https://github.com/user-attachments/assets/cc774c85-e7d3-42fc-be9b-9cbf0bce6900" />
 https://www.youtube.com/watch?v=hAuyNf0Uk-w
+<img width="1134" height="755" alt="image" src="https://github.com/user-attachments/assets/4ac52524-eef3-4488-af4e-1a9e401b50ab" />
 https://www.youtube.com/watch?v=d5ooYpXioqE
+<img width="1136" height="751" alt="image" src="https://github.com/user-attachments/assets/f66f6555-20bd-46c2-84ee-f7201903f294" />
 https://www.youtube.com/watch?v=kbcg-6dGfNE
+
