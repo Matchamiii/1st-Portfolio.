@@ -3,28 +3,30 @@ import './App.css';
 import profilePic from './assets/pic1.png';
 
 function App() {
+ 
   const scrollRef = useRef(null);
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
 
+ 
   const [isAboutVisible, setIsAboutVisible] = useState(false);
   const [isSkillsVisible, setIsSkillsVisible] = useState(false);
-  // NEW: Loading State
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
-    // Timer for the loading screen
+    
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
 
-    // Observer for About Section
+
     const aboutObserver = new IntersectionObserver(
       ([entry]) => { setIsAboutVisible(entry.isIntersecting); },
       { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
-    // Observer for Skills Section
+    
     const skillsObserver = new IntersectionObserver(
       ([entry]) => { setIsSkillsVisible(entry.isIntersecting); },
       { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
@@ -40,6 +42,7 @@ function App() {
     };
   }, []);
 
+  
   const handleScroll = (direction) => {
     const slider = scrollRef.current;
     const scrollAmount = slider.offsetWidth;
@@ -59,7 +62,7 @@ function App() {
     }
   };
 
-  // --- SHOW LOADER IF LOADING IS TRUE ---
+  // --- PRELOADER RENDER ---
   if (loading) {
     return (
       <div className="preloader">
@@ -71,8 +74,10 @@ function App() {
     );
   }
 
+
   return (
     <div className="portfolio-wrapper">
+      
       {/* --- HEADER --- */}
       <nav className="portfolio-header">
         <div className="logo">Portfolio.</div>
@@ -386,45 +391,88 @@ function App() {
         </div>
       </section>
 
-    {/* --- CONTACT ME SECTION --- */}
-  <section id="contact" className="contact-section">
-    <div className="contact-container">
-      <div className="contact-header">
-        <p className="section-label">05 // GET IN TOUCH</p>
-        <h2 className="contact-title">CONTACT ME</h2>
-        <p className="contact-subtitle">Let’s connect! Whether it’s for a project, collaboration, or a simple chat.</p>
-      </div>
+      {/* --- SERVICES --- */}
+      <section id="services" className="services-section">
+        <div className="container">
+          <p className="section-label">04 // WHAT I OFFER</p>
+          <div className="services-header">
+            <h2 className="title">SERVICES</h2>
+          </div>
+          
+          <div className="services-grid">
+            {[
+              { 
+                num: "01", 
+                title: "Web Development", 
+                desc: "Building responsive, high-performance websites using React and modern CSS.",
+                icon: "fas fa-laptop-code"
+              },
+              { 
+                num: "02", 
+                title: "UI/UX Design", 
+                desc: "Creating intuitive user interfaces and wireframes in Figma for seamless experiences.",
+                icon: "fas fa-paint-brush"
+              },
+              { 
+                num: "03", 
+                title: "Responsive Design", 
+                desc: "Ensuring your digital products look stunning on every screen size and device.",
+                icon: "fas fa-mobile-alt"
+              }
+            ].map((service, index) => (
+              <div className="service-card" key={index}>
+                <div className="service-number">{service.num}</div>
+                <div className="service-icon">
+                  <i className={service.icon}></i>
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
+                <div className="service-footer-line"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <form 
-        className="contact-form" 
-        onSubmit={(e) => {
-          e.preventDefault(); // Prevents page reload
-          alert("Message Sent!"); // Notifies you
-          e.target.reset(); // THIS ERASES EVERYTHING IN THE BOXES
-        }}
-      >
-        <div className="input-group">
-          <input type="text" placeholder="Your Name" required />
-        </div>
-        <div className="input-group">
-          <input type="email" placeholder="Your Email" required />
-        </div>
-        <div className="input-group">
-          <textarea placeholder="Your Message" rows="5" required></textarea>
-        </div>
-        <button type="submit" className="send-btn">
-          <span>Send Message</span>
-          <i className="fas fa-arrow-right"></i>
-        </button>
-      </form>
+      {/* --- CONTACT ME SECTION --- */}
+      <section id="contact" className="contact-section">
+        <div className="contact-container">
+          <div className="contact-header">
+            <p className="section-label">05 // GET IN TOUCH</p>
+            <h2 className="contact-title">CONTACT ME</h2>
+            <p className="contact-subtitle">Let’s connect! Whether it’s for a project, collaboration, or a simple chat.</p>
+          </div>
 
-      <div className="contact-socials">
-        <a href="https://github.com/Matchamiii" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/rj-gregori-504151356/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://www.facebook.com/rj.gregori.9/" target="_blank" rel="noreferrer">Facebook</a>
-      </div>
-    </div>
-  </section>
+          <form 
+            className="contact-form" 
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Message Sent!");
+              e.target.reset();
+            }}
+          >
+            <div className="input-group">
+              <input type="text" placeholder="Your Name" required />
+            </div>
+            <div className="input-group">
+              <input type="email" placeholder="Your Email" required />
+            </div>
+            <div className="input-group">
+              <textarea placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" className="send-btn">
+              <span>Send Message</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <div className="contact-socials">
+            <a href="https://github.com/Matchamiii" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/rj-gregori-504151356/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://www.facebook.com/rj.gregori.9/" target="_blank" rel="noreferrer">Facebook</a>
+          </div>
+        </div>
+      </section>
 
       {/* --- FOOTER --- */}
       <footer className="footer">
